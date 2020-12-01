@@ -1,9 +1,11 @@
 import React from 'react';
-import { ContainerProviderProps, UseHook, Container } from './store';
+import { ContainerProviderProps, UseHook, Container } from './type';
 
 const EMPTY: unique symbol = Symbol();
 
-export function createContainer<Value, State = void>(useHook: UseHook<Value, State>): Container<Value, State> {
+export function createContainer<Value, State = void>(
+  useHook: UseHook<Value, State>,
+): Container<Value, State> {
   const Context = React.createContext<Value | typeof EMPTY>(EMPTY);
 
   function Provider(props: ContainerProviderProps<State>) {

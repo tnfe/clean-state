@@ -1,5 +1,13 @@
-import { useState, useCallback } from 'react';
-import { Module, BootstrapReturn, ModulesFromMapObject, HookReturn, Effect, Mutation,  AnyAction, AnyObject } from './store';
+import { useState, useCallback, useMemo } from 'react';
+import { getInitialState, extractFns } from './helper';
+import {
+  BootstrapReturn,
+  RootState,
+  Effect,
+  Reducer,
+  AnyObject,
+  InnerDispatch,
+} from 'src/types/store';
 
 /**
  * 启动项目
@@ -7,51 +15,62 @@ import { Module, BootstrapReturn, ModulesFromMapObject, HookReturn, Effect, Muta
  * 生成 state 和 dispatch
  * @param modules 模型对象集合
  */
-function bootstrap<State>(modules: {[key: string]: Module}): BootstrapReturn<State> {
-  const moduleKeys = Object.keys(modules);
-  const state = {} as State;
-  const moduleCache: ModulesFromMapObject = {};
-  moduleKeys.forEach((key) => {
-    const module = modules[key];
-    const name = module.namespace || key;
-    state[name] = module.state;
-    moduleCache[name] = module;
-  });
+function bootstrap<Modules>(
+  modules: Modules,
+): BootstrapReturn<RootState<Modules>, Modules> {
+  const initialState = getInitialState(modules);
 
-  function useHook(initialState: State): HookReturn<State>  {
-    const [hookState, setHookState] = useState(initialState);
-    const dispatch = useCallback(async (action: AnyAction, payload: AnyObject): Promise<void> => {
-      const { type } = action;
-      try {
-        let result = payload;
-        const [moduleName, moduleFun] = type.split('.');
-        const module = moduleCache[moduleName];
-        const { effects, mutations } = module;
-        // if module is not exist
-        if (!module) {
-          console.error(`${moduleName} is not registry in store`);
-          return;
-        }
-        const effect: Effect | null = effects[moduleFun];
-        const mutation: Mutation = mutations[moduleFun];
-        // 有副作用先行处理
-        if (effect) {
-          result = await effect(action, payload);
-        }
-        setHookState((prevState) => {
-          const currentState = prevState[moduleName];
-          const newState = mutation(result, currentState, dispatch);
-          return { ...prevState, [moduleName]: newState };
-        });
-      } catch (err) {
-        console.error(`${type} run error: ${err.stack}`);
-      }
-    }, []);
+  // 钩子函数，代理状态处理
+  function useHook(_initialState: RootState<Modules>) {
+    const [hookState, setHookState] = useState(_initialState);
 
-    return { state: hookState, dispatch };
+    const dispatch = useCallback(
+      async (type: string, payload: AnyObject): Promise<void> => {
+        try {
+          const [moduleName, moduleFun] = type.split('.');
+          const module = modules[moduleName];
+          // 当 module 不存在
+          if (!module) {
+            console.error(`${moduleName} is not registry in store`);
+            return;
+          }
+
+          const { reducers = {}, effects = {} } = module;
+          // 副作用先行处理
+          const effect: Effect = effects[moduleFun];
+          const result = effect ? await effect(payload) : payload;
+
+          // 处理mutation方法
+          setHookState((prevState) => {
+            const reducer: Reducer<RootState<Modules>> = reducers[moduleFun];
+            const currentState = prevState[moduleName];
+            const newState = reducer(result, currentState, dispatch);
+            return { ...prevState, [moduleName]: newState };
+          });
+        } catch (err) {
+          console.error(`${type} run error: ${err.stack}`);
+        }
+      },
+      [],
+    );
+
+    useMemo(() => {
+      const keys = Object.keys(modules);
+      const map = {};
+
+      keys.forEach((key: string) => {
+        const { effects = {}, reducers = {} } = modules[key];
+        const rFns = extractFns(key, dispatch)(reducers);
+        const eFns = extractFns(key, dispatch)(effects);
+        map[key] = { ...rFns, ...eFns };
+      });
+      return Object.assign(dispatch, map);
+    }, [dispatch]);
+    const innerDispatch = dispatch as typeof dispatch & InnerDispatch<Modules>;
+    return { state: hookState, dispatch: innerDispatch };
   }
 
-  return { state, useHook };
+  return { initialState, useHook };
 }
 
 export default bootstrap;
