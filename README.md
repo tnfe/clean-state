@@ -1,18 +1,18 @@
-## Clean-State
+# Clean-State
 
-#### Introduce
+## Introduce
 1. Use React's latest syntax useContext and useState for state update and synchronization.
 2. The architecture is simple and easy to use, the module layer granularity is fine and measurable, and the division is clear.
 3. Native support for side effects, asynchronous and synchronous updates.
 4. Excellent performance, can accurately update the target component to a certain extent
 5. Small and exquisite, zero dependence, only more than 100 lines of code.
 
-#### Install
+## Install
 ```javascript
 npm i clean-state --save
 ```
 
-#### Usage
+## Usage
 1. module definition
     ```javascript
     // user.ts
@@ -77,8 +77,8 @@ npm i clean-state --save
     }
     ```
 
-#### Note
+## Note
 Dispatch uses chain call, and call effect -> reducer with the same name in turn. When there is no side effect data modification, just declare reducers.
 
-#### License
+## License
 clean-state is available under the MIT License.

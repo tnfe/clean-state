@@ -1,18 +1,18 @@
-## Clean-State
+# Clean-State
 
-#### 介绍
+## 介绍
 1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
 2.  架构简单易用，module 层粒度精细可测，划分清晰。
 3.  原生支持副作用，可异步和同步更新。
 4.  性能优异，一定程度上可以精确更新目标组件
 5.  小巧，零依赖，仅100多行代码。
 
-#### 安装
+## 安装
 ```javascript
 npm i clean-state --save
 ```
 
-#### 使用
+## 使用
 1. 模块定义
     ```javascript
     // user.ts
@@ -77,8 +77,8 @@ npm i clean-state --save
     }
     ```
 
-#### 注意
+## 注意
 Dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
 
-#### 许可
+## 许可
 clean-state在MIT License下允许使用。
