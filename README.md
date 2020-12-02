@@ -1,3 +1,5 @@
+[English](./README.md) | [简体中文](./doc/README.zh-CN.md) 
+
 ## Clean-State
 #### Introduce
 1. Use React's latest syntax useContext and useState for state update and synchronization.
