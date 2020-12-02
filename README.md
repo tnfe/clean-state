@@ -59,7 +59,7 @@
     // page.ts
     import CState from 'index.ts';
     function Page() {
-        const [state: {user}, dispatch] = CState.useContainer()
+        const [state: {user}, dispatch] = CState.useModule()
         const change = useCallback(()=> {
             const payload = {...}
             dispatch.user.setName(payload)
