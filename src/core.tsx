@@ -13,7 +13,7 @@ export function createContainer<Value, State = void>(
     return <Context.Provider value={value}>{props.children}</Context.Provider>;
   }
 
-  function useContainer(): Value {
+  function useModule(): Value {
     const value = React.useContext(Context);
     if (value === EMPTY) {
       throw new Error('Component must be wrapped with <Container.Provider>');
@@ -21,5 +21,5 @@ export function createContainer<Value, State = void>(
     return value;
   }
 
-  return { Provider, useContainer };
+  return { Provider, useModule };
 }

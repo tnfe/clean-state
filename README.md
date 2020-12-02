@@ -11,17 +11,14 @@
     ```javascript
     // user.ts
     export default {
-      // module state
       state: {
         name: ''
       },
-      // 
       reducers: {
         setName({name}, currentState, dispatch) {
             return {...currentState, name}
         }
       },
-      // 副作用操作
       effects: {
         async setName({uId}) {
             const user = fetch.get(`xxx?uid=${uId}`)
@@ -38,8 +35,9 @@
     import user from 'user'
     
     const modules = {user}
-    // 返回初始状态和包装后的钩子函数
-    const [initialState: _initialState, hooks] = bootstrap(modules) 
+
+    const [initialState: _initialState, hooks] = bootstrap(modules)
+    
     export default createContainer(hooks)
     export initialState = _initialState
     ```
@@ -49,7 +47,7 @@
     // app.ts
     import Container, { initialState } from 'index.ts';
     function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
-      // todo: 这里可以修改默认状态
+      // todo: here can modify initialState
       return <Container.Provider initialState={initialState}>
           <Component {...pageProps} />
         </Container.Provider>;
@@ -67,7 +65,7 @@
             dispatch.user.setName(payload)
         }, [])
         return <div>
-            <button onClick={change}>修改</button>
+            <button onClick={change}>modify</button>
             {user.name}
         <div>
     }

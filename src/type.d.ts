@@ -35,7 +35,7 @@ export interface ContainerProviderProps<State = void> {
 
 export interface Container<Value, State = void> {
   Provider: React.ComponentType<ContainerProviderProps<State>>;
-  useContainer: () => Value;
+  useModule: () => Value;
 }
 
 export type RootEffects<Modules extends Record<string, any>> = {
