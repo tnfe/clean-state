@@ -76,4 +76,8 @@ npm i clean-state --save
     }
     ```
 
-注：dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
+#### 注意
+Dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
+
+#### 许可
+clean-state在MIT License下允许使用。
