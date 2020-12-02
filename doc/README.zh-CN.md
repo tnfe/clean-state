@@ -1,13 +1,13 @@
 ## Clean-State
-#### Introduce
-1. Use React's latest syntax useContext and useState for state update and synchronization.
-2. The architecture is simple and easy to use, the module layer granularity is fine and measurable, and the division is clear.
-3. Native support for side effects, asynchronous and synchronous updates.
-4. Excellent performance, can accurately update the target component to a certain extent
-5. Small and exquisite, zero dependence, only more than 100 lines of code.
+####介绍
+1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
+2.  架构简单易用，module 层粒度精细可测，划分清晰。
+3.  原生支持副作用，可异步和同步更新。
+4.  性能优异，一定程度上可以精确更新目标组件
+5.  小巧，零依赖，仅100多行代码。
 
-#### Usage
-1. module definition
+#### 使用
+1. 模块定义
     ```javascript
     // user.ts
     export default {
@@ -28,7 +28,7 @@
     };
     ```
 
-2.  module registration
+2.  模块注册
     ```javascript
     // index.ts
     import createContainer, { bootstrap } from '@tencent/clean-state';
@@ -42,7 +42,7 @@
     export initialState = _initialState
     ```
     
-3.  root node introduction
+3.  根节点引入
     ```javascript
     // app.ts
     import Container, { initialState } from 'index.ts';
@@ -54,7 +54,7 @@
     }
     ```
     
-4.  component call
+4.  组件调用
     ```javascript
     // page.ts
     import CState from 'index.ts';
@@ -71,4 +71,4 @@
     }
     ```
 
-Note: Dispatch uses chain call, and call effect -> reducer with the same name in turn. When there is no side effect data modification, just declare reducers.
+注：dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
