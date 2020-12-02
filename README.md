@@ -11,12 +11,12 @@
     ```javascript
     // user.ts
     export default {
-      // 状态定义
+      // module state
       state: {
         name: ''
       },
-      // 状态修改
-      mutations: {
+      // 
+      reducers: {
         setName({name}, currentState, dispatch) {
             return {...currentState, name}
         }
@@ -73,4 +73,4 @@
     }
     ```
 
-注：dispatch采用链式调用，依次同名调用 effect -> mutation。当不存在副作用数据修改时，只声明mutations即可。
+注：dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
