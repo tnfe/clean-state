@@ -1,5 +1,7 @@
 # Clean-State
 
+[English](./README.md) | [简体中文](./doc/README.zh-CN.md)
+
 ## Introduce
 1. Use React's latest syntax useContext and useState for state update and synchronization.
 2. The architecture is simple and easy to use, the module layer granularity is fine and measurable, and the division is clear.
