@@ -13,7 +13,7 @@ npm i clean-state --save
 ```
 
 ## Usage
-1. module definition
+1. module
     ```javascript
     // user.ts
     export default {
@@ -34,7 +34,7 @@ npm i clean-state --save
     };
     ```
 
-2.  module registration
+2.  registration
     ```javascript
     // index.ts
     import createContainer, { bootstrap } from 'clean-state';
@@ -48,7 +48,7 @@ npm i clean-state --save
     export initialState = _initialState
     ```
     
-3.  root node introduction
+3.  introduction
     ```javascript
     // app.ts
     import Container, { initialState } from 'index.ts';
@@ -60,7 +60,7 @@ npm i clean-state --save
     }
     ```
     
-4.  component call
+4.  invoke
     ```javascript
     // page.ts
     import CState from 'index.ts';
