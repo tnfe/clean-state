@@ -1,6 +1,6 @@
 # Clean-State
 
-[English](./README.md) | [简体中文](./doc/README.zh-CN.md)
+[English](../README.md) | [简体中文](./doc/README.zh-CN.md)
 
 ## 介绍
 1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
