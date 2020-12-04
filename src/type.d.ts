@@ -8,14 +8,13 @@ export type UseHook<Value, State> = (initialState?: State) => Value;
 
 export type AnyObject = Record<string, any>;
 
-export type Dispatch = (type: string, payload: AnyObject) => Promise<void>;
+export type Dispatch = (type: string, payload: AnyObject) => Promise<any>;
 
-export type Effect = (payload: AnyObject) => any;
+export type Effect = (payload: AnyObject, dispatch: Dispatch) => any;
 
 export type Reducer<RootState> = (
   payload: AnyObject,
   currentState: RootState,
-  dispatch: Dispatch,
 ) => any;
 
 export interface HookReturn<RootState, Modules> {
