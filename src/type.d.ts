@@ -39,22 +39,22 @@ export interface Container<Value, State = void> {
 
 export type RootEffects<Modules extends Record<string, any>> = {
   [key in keyof Modules]: Modules[key]['effects'] extends undefined
-  ? Record<string, unknown>
-  : {
-    [fnKey in keyof Modules[key]['effects']]: (
-      payload: Parameters<Modules[key]['effects'][fnKey]>[0],
-    ) => any;
-  };
+    ? Record<string, unknown>
+    : {
+        [fnKey in keyof Modules[key]['effects']]: (
+          payload: Parameters<Modules[key]['effects'][fnKey]>[0],
+        ) => any;
+      };
 };
 
 export type RootReducers<Modules extends Record<string, any>> = {
   [key in keyof Modules]: Modules[key]['reducers'] extends undefined
-  ? Record<string, unknown>
-  : {
-    [fnKey in keyof Modules[key]['reducers']]: (
-      payload: Parameters<Modules[key]['reducers'][fnKey]>[0],
-    ) => any;
-  };
+    ? Record<string, unknown>
+    : {
+        [fnKey in keyof Modules[key]['reducers']]: (
+          payload: Parameters<Modules[key]['reducers'][fnKey]>[0],
+        ) => any;
+      };
 };
 
 export type InnerDispatch<Modules> = RootEffects<Modules> &
