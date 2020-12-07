@@ -10,7 +10,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    '@tencent/eslint-config-tencent',
   ],
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   settings: {
