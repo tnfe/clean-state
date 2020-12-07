@@ -1,6 +1,6 @@
 import { RootState, AnyObject, Dispatch } from './type';
 
-// 按照命名空间展平 modules 对象
+// 按照命名空间展平 modules 获取初始状态
 export const getInitialState = <Modules>(
   modules: Modules,
 ): RootState<Modules> => {
