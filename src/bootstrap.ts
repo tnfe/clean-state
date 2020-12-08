@@ -26,8 +26,6 @@ function bootstrap<Modules>(
 
     const dispatch = useCallback(
       async (type: string, payload: AnyObject): Promise<any> => {
-        let resolver;
-        let rejector;
         try {
           const [moduleName, moduleFun] = type.split('.');
           const module = modules[moduleName];
@@ -40,25 +38,20 @@ function bootstrap<Modules>(
           const { reducers = {}, effects = {} } = module;
           // 副作用先行处理
           const effect: Effect = effects[moduleFun];
-          const result = effect ? await effect(payload, dispatch) : payload;
+          const reducer: Reducer<RootState<Modules>> = reducers[moduleFun];
+          if (effect) return effect(payload, dispatch);
 
-          // 处理mutation方法
+          // 处理reducer
           setHookState((prevState) => {
-            const reducer: Reducer<RootState<Modules>> = reducers[moduleFun];
             const currentState = prevState[moduleName];
-            const newState = reducer(result, currentState);
+            const newState = reducer(payload, currentState);
             const compound = { ...prevState, [moduleName]: newState };
-            resolver(compound);
             return compound;
           });
         } catch (err) {
           console.error(`${type} run error: ${err.stack}`);
-          rejector(err);
+          return Promise.reject(err);
         }
-        return new Promise((resolve, reject) => {
-          resolver = resolve;
-          rejector = reject;
-        });
       },
       [],
     );
