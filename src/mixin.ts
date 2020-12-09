@@ -1,4 +1,4 @@
-import { Module, MixinModule } from '../type';
+import { Module, MixinModule } from './type';
 
 // 对模块混入公共方法
 const mixin = <C extends Module, M extends Record<string, Module>>(

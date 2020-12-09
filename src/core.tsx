@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContainerProviderProps, UseHook, Container } from '../type';
+import { ContainerProviderProps, UseHook, Container } from './type';
 
 const EMPTY: unique symbol = Symbol();
 
