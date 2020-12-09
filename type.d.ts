@@ -1,5 +1,11 @@
 import React from 'react';
 
+export interface Module {
+  state?: Record<string, any>;
+  reducers?: Record<string, any>;
+  effects?: Record<string, Effect>;
+}
+
 export type RootState<Modules extends Record<string, any>> = {
   [key in keyof Modules]: Modules[key]['state'];
 };
@@ -42,7 +48,7 @@ export type RootEffects<Modules extends Record<string, any>> = {
     ? Record<string, unknown>
     : {
         [fnKey in keyof Modules[key]['effects']]: (
-          payload: Parameters<Modules[key]['effects'][fnKey]>[0],
+          payload?: Parameters<Modules[key]['effects'][fnKey]>[0],
         ) => any;
       };
 };
@@ -59,3 +65,11 @@ export type RootReducers<Modules extends Record<string, any>> = {
 
 export type InnerDispatch<Modules> = RootEffects<Modules> &
   RootReducers<Modules>;
+
+export type MixinModule<C extends Module, M extends Record<string, Module>> = {
+  [key in keyof M]: {
+    state: M[key]['state'] & C['state'];
+    reducers: M[key]['reducers'] & C['reducers'];
+    effects: M[key]['effects'] & C['effects'];
+  };
+};

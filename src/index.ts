@@ -1,5 +1,4 @@
 import { createContainer } from './core';
-import _bootstrap from './bootstrap';
-
+export { default as mixin } from './mixin';
+export { default as bootstrap } from './bootstrap';
 export default createContainer;
-export const bootstrap = _bootstrap;

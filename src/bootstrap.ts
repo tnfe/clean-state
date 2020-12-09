@@ -7,7 +7,7 @@ import {
   Reducer,
   AnyObject,
   InnerDispatch,
-} from './type';
+} from '../type';
 
 /**
  * 启动项目
