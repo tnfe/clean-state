@@ -18,9 +18,9 @@ export type Dispatch = (type: string, payload: AnyObject) => Promise<any>;
 
 export type Effect = (payload: AnyObject, dispatch: Dispatch) => any;
 
-export type Reducer<RootState> = (
+export type Reducer = (
   payload: AnyObject,
-  currentState: RootState,
+  currentState: Record<string, any>,
 ) => any;
 
 export interface HookReturn<RootState, Modules> {

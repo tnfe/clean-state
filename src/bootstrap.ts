@@ -38,7 +38,7 @@ function bootstrap<Modules>(
           const { reducers = {}, effects = {} } = module;
           // 副作用先行处理
           const effect: Effect = effects[moduleFun];
-          const reducer: Reducer<RootState<Modules>> = reducers[moduleFun];
+          const reducer: Reducer = reducers[moduleFun];
           if (effect) return effect(payload, dispatch);
 
           // 处理reducer
