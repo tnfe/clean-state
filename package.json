@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/freezeYe/clean-state.git"
   },
-  "author": "",
+  "author": "freezeYe",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.12.9",

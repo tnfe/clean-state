@@ -1,3 +1,4 @@
 node_modules
+.npmrc
 package-lock.json
 lib
