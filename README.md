@@ -1,11 +1,14 @@
 # Clean-State
 
+![logo](https://github.com/freezeYe/assets/blob/master/cs.png)
+
 ## 介绍
 1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
 2.  架构简单易用，module 层粒度精细可测，划分清晰。
 3.  原生支持副作用，可异步和同步更新。
-4.  性能优异，一定程度上可以精确更新目标组件
+4.  性能优异，一定程度上可以精确更新目标组件。
 5.  小巧，零依赖，仅100多行代码。
+6.  仅仅是react语法，零学习接入成本。
 
 ## 安装
 ```javascript
@@ -21,14 +24,16 @@ npm i clean-state --save
         name: ''
       },
       reducers: {
-        setName({name}, currentState, dispatch) {
+        setName(payload, currentState) {
+            const { name } = payload
             return {...currentState, name}
         }
       },
       effects: {
-        async setName({uId}) {
-            const user = fetch.get(`xxx?uid=${uId}`)
-            return {name: user.name}
+        async getUser{payload, rootState, dispatch}) {
+            const { uId } = payload
+            const user = await fetch.get(`xxx?uid=${uId}`)
+            dispatch.user.setName({name: user.name})
         }
       },
     };
@@ -42,10 +47,11 @@ npm i clean-state --save
     
     const modules = {user}
 
-    const [initialState: _initialState, hooks] = bootstrap(modules)
+    const setUp = bootstrap(modules);
+    const cState = createContainer(setUp.useHook);
     
-    export default createContainer(hooks)
-    export initialState = _initialState
+    export const { initialState } = setUp;
+    export const { Provider, useModule } = cState;
     ```
     
 3.  根节点引入
@@ -63,11 +69,11 @@ npm i clean-state --save
 4.  组件调用
     ```javascript
     // page.ts
-    import CState from 'index.ts';
+    import { useModule } from 'index.ts';
     function Page() {
-        const [state: {user}, dispatch] = CState.useModule()
+        const [state: {user}, dispatch] = useModule()
         const change = useCallback(()=> {
-            const payload = {...}
+            const payload =  { name: 'test' }
             dispatch.user.setName(payload)
         }, [])
         return <div>
@@ -78,7 +84,7 @@ npm i clean-state --save
     ```
 
 ## 注意
-Dispatch采用链式调用，依次同名调用 effect -> reducer。当不存在副作用数据修改时，只声明reducers即可。
+Dispatch优先级为 effects -> reducers，同模块下函数不允许同名。
 
 ## 许可
 clean-state在MIT License下允许使用。

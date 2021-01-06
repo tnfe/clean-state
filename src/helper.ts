@@ -1,15 +1,16 @@
-import { RootState, AnyObject, Dispatch } from './type';
+import { RootState, AnyObject, Dispatch } from '../type';
 
 // 按照命名空间展平 modules 获取初始状态
 export const getInitialState = <Modules>(
   modules: Modules,
 ): RootState<Modules> => {
   const entries = Object.entries(modules);
-  const initialState = {} as RootState<Modules>;
+  const initialState = {};
   entries.forEach(([key, module]) => {
-    initialState[key] = module.state; // 暂存 state
+    const { state } = module;
+    initialState[key] = state; // 暂存 state
   });
-  return initialState;
+  return initialState as RootState<Modules>;
 };
 
 // 提取 reducers 和 effects 方法

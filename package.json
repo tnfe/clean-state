@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "./type.d.ts",
+  "type": "./lib/index.d.ts",
   "scripts": {
-    "build": "rollup --config",
+    "build": "tsc",
     "lint": "eslint ./src --fix --ext js,ts,tsx"
   },
   "repository": {
     "type": "git",
-    "url": "http://git.code.oa.com/photographer/clean-state.git"
+    "url": "https://github.com/freezeYe/clean-state.git"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "react": "^17.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
     "eslint": "^7.12.1",
