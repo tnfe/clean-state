@@ -2,7 +2,7 @@
 
 ![logo](https://github.com/freezeYe/assets/blob/master/cs.png)
 
-## 介绍
+## 特性
 1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
 2.  架构简单易用，module 层粒度精细可测，划分清晰。
 3.  原生支持副作用，可异步和同步更新。
