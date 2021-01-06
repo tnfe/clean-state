@@ -2,6 +2,9 @@
 
 ![logo](https://github.com/freezeYe/assets/blob/master/cs.png)
 
+## 介绍
+🐻 一款纯净小巧的状态管理器，使用react-hooks原生实现，自动连接module组织架构。🍋如果你不是要制造一艘航空母舰又厌烦了复杂且难用的大型状态管理库，那么不妨来试试Clean-State。它小巧玲珑、性能极致完全可以满足你的需求。
+
 ## 特性
 1.  使用 React 最新语法 useContext 和 useState 进行状态更新和同步。
 2.  架构简单易用，module 层粒度精细可测，划分清晰。
