@@ -42,7 +42,7 @@ npm i clean-state --save
 2.  模块注册
     ```javascript
     // index.ts
-    import createContainer, { bootstrap } from '@tencent/clean-state';
+    import createContainer, { bootstrap } from 'clean-state';
     import user from 'user'
     
     const modules = {user}
