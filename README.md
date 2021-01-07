@@ -6,7 +6,7 @@
 
 <div align="center">
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/v/clean-state" alt="Npm Version" /></a>
-<a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/l/clean-state" alt="Package License" /></a>
+<a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/l/clean-state?style=flat-square" alt="Package License" /></a>
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/dm/clean-state" alt="Downloads" /></a>
 </div>
 
@@ -68,12 +68,12 @@ export const { Provider, useModule } = cState;
 3.  根节点引入
 ```javascript
 // app.ts
-import Container, { initialState } from 'index.ts';
+import { Provider, initialState } from 'index.ts';
 function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
   // todo: here can modify initialState
-  return <Container.Provider initialState={initialState}>
+  return <Provider initialState={initialState}>
       <Component {...pageProps} />
-    </Container.Provider>;
+    </Provider>;
 }
 ```
     
@@ -111,6 +111,7 @@ export default {
 import commont from 'common'
 import user from 'user'
 import { mixin } from 'src/store';
+
 // user 模块混入了common的setValue方法
 const modules = mixin(common, { user })
 ...
