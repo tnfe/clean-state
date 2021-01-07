@@ -121,4 +121,4 @@ const modules = mixin(common, { user })
     Dispatch优先级为 effects -> reducers，同模块下函数不允许同名。
 
 ## 许可
-    [MIT](./LICENSE)
+    clean-state在MIT License下允许使用。

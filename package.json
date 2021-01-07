@@ -13,7 +13,7 @@
     "url": "https://github.com/tnfe/clean-state"
   },
   "author": "freezeYe",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.9",
     "react": "^17.0.1"
