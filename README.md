@@ -1,6 +1,14 @@
 # Clean-State
 
-![logo](https://github.com/freezeYe/assets/blob/master/cs.png)
+<p align="center">
+  <img width="650px" src="https://github.com/freezeYe/assets/blob/master/cs.png" />
+</p>
+
+<div align="center">
+<a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/v/clean-state" alt="Npm Version" /></a>
+<a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/l/clean-state" alt="Package License" /></a>
+<a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/dm/clean-state" alt="Downloads" /></a>
+</div>
 
 ## 介绍
 🐻 一款纯净小巧的状态管理器，使用react-hooks原生实现，自动连接module组织架构。🍋如果你不是要制造一艘航空母舰又厌烦了复杂且难用的大型状态管理库，那么不妨来试试Clean-State。它小巧玲珑、性能极致完全可以满足你的需求。
@@ -113,4 +121,4 @@ const modules = mixin(common, { user })
     Dispatch优先级为 effects -> reducers，同模块下函数不允许同名。
 
 ## 许可
-    clean-state在MIT License下允许使用。
+    [MIT](./LICENSE)
