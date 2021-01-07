@@ -20,74 +20,97 @@ npm i clean-state --save
 
 ## 使用
 1. 模块定义
-    ```javascript
-    // user.ts
-    export default {
-      state: {
-        name: ''
-      },
-      reducers: {
-        setName(payload, currentState) {
-            const { name } = payload
-            return {...currentState, name}
-        }
-      },
-      effects: {
-        async getUser{payload, rootState, dispatch}) {
-            const { uId } = payload
-            const user = await fetch.get(`xxx?uid=${uId}`)
-            dispatch.user.setName({name: user.name})
-        }
-      },
-    };
-    ```
+```javascript
+// user.ts
+export default {
+  state: {
+    name: ''
+  },
+  reducers: {
+    setName(payload, currentState) {
+        const { name } = payload
+        return {...currentState, name}
+    }
+  },
+  effects: {
+    async getUser{payload, rootState, dispatch}) {
+        const { uId } = payload
+        const user = await fetch.get(`xxx?uid=${uId}`)
+        dispatch.user.setName({name: user.name})
+    }
+  },
+};
+```
 
 2.  模块注册
-    ```javascript
-    // index.ts
-    import createContainer, { bootstrap } from 'clean-state';
-    import user from 'user'
-    
-    const modules = {user}
+```javascript
+// index.ts
+import createContainer, { bootstrap } from 'clean-state';
+import user from 'user'
 
-    const setUp = bootstrap(modules);
-    const cState = createContainer(setUp.useHook);
-    
-    export const { initialState } = setUp;
-    export const { Provider, useModule } = cState;
-    ```
+const modules = {user}
+
+const setUp = bootstrap(modules);
+const cState = createContainer(setUp.useHook);
+
+export const { initialState } = setUp;
+export const { Provider, useModule } = cState;
+```
     
 3.  根节点引入
-    ```javascript
-    // app.ts
-    import Container, { initialState } from 'index.ts';
-    function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
-      // todo: here can modify initialState
-      return <Container.Provider initialState={initialState}>
-          <Component {...pageProps} />
-        </Container.Provider>;
-    }
-    ```
+```javascript
+// app.ts
+import Container, { initialState } from 'index.ts';
+function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
+  // todo: here can modify initialState
+  return <Container.Provider initialState={initialState}>
+      <Component {...pageProps} />
+    </Container.Provider>;
+}
+```
     
 4.  组件调用
-    ```javascript
-    // page.ts
-    import { useModule } from 'index.ts';
-    function Page() {
-        const [state: {user}, dispatch] = useModule()
-        const change = useCallback(()=> {
-            const payload =  { name: 'test' }
-            dispatch.user.setName(payload)
-        }, [])
-        return <div>
-            <button onClick={change}>modify</button>
-            {user.name}
-        <div>
-    }
-    ```
+```javascript
+// page.ts
+import { useModule } from 'index.ts';
+function Page() {
+    const [state: {user}, dispatch] = useModule()
+    const change = useCallback(()=> {
+        const payload =  { name: 'test' }
+        dispatch.user.setName(payload)
+    }, [])
+    return <div>
+        <button onClick={change}>modify</button>
+        {user.name}
+    <div>
+}
+```
+
+## 混入
+    在很多情况下，多个module之间会存在公共的state、reducers或者effects。
+
+```javascript
+// common.ts
+export default {
+  reducers: {
+    setValue<T>(payload: Record<keyof T, any>, state: T): T {
+      return { ...state, ...payload };
+    },
+  },
+};
+
+// index.ts
+import commont from 'common'
+import user from 'user'
+import { mixin } from 'src/store';
+// user 模块混入了common的setValue方法
+const modules = mixin(common, { user })
+...
+
+```
 
 ## 注意
-Dispatch优先级为 effects -> reducers，同模块下函数不允许同名。
+    Dispatch优先级为 effects -> reducers，同模块下函数不允许同名。
 
 ## 许可
-clean-state在MIT License下允许使用。
+    clean-state在MIT License下允许使用。
