@@ -16,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.9",
+    "eventemitter3": "^4.0.7",
+    "immer": "^8.0.0",
     "react": "^17.0.1"
   },
   "keywords": [
