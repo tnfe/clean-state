@@ -4,6 +4,11 @@ import { splitPropertyAndMethod } from './helper';
 
 type Listener = () => void;
 
+/**
+ * The container is one of the most important objects in FOX.
+ * It manages the organization, distribution,
+ * and synchronization of all module states to the UI layer
+ */
 class Container {
   private rootState: Record<string, any>;
   private rootReducers: Record<string, any>;
@@ -63,9 +68,14 @@ class Container {
   }
 
   public setState(namespace: string, newState: Record<string, any>): void {
-    this.rootState = produce(this.rootState, (draftState) => {
-      draftState[namespace] = newState;
-    });
+    if (this.rootState[namespace]) {
+      this.rootState[namespace] = produce(
+        this.rootState[namespace],
+        (draftState) => {
+          Object.assign(draftState, newState);
+        },
+      );
+    }
 
     this.trigger(namespace);
   }

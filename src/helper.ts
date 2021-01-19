@@ -1,4 +1,8 @@
-export function splitPropertyAndMethod(modules) {
+/**
+ * Split Each module state and method
+ * @param {object} modules
+ */
+export function splitPropertyAndMethod(modules: Record<string, any>) {
   const rootState = {};
   const rootReducers = {};
   const rootEffects = {};

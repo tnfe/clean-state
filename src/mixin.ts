@@ -1,6 +1,10 @@
 import { Module, MixinModule } from '../index.d';
 
-// 对模块混入公共属性和方法
+/**
+ * Mix in common variables and methods for all modules
+ * @param {object} common
+ * @param {object} modules
+ */
 const mixin = <C extends Module, M extends Record<string, Module>>(
   common: C,
   modules: M,
@@ -11,11 +15,11 @@ const mixin = <C extends Module, M extends Record<string, Module>>(
     module.state = module.state || {};
     module.reducers = module.reducers || {};
     module.effects = module.effects || {};
-    // state 混入
+    // state mixin
     if (common.state) Object.assign(module.state, common.state);
-    // reducer 混入
+    // reducer mixin
     if (common.reducers) Object.assign(module.reducers, common.reducers);
-    // effects 混入
+    // effects mixin
     if (common.effects) Object.assign(module.effects, common.effects);
   });
 

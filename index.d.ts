@@ -13,17 +13,13 @@ export type Bootstrap = <Modules>(
 
 export type NameSpaceDeclare<Modules> = keyof Modules | (keyof Modules)[];
 
-export type UseModule<
-  Modules extends Record<string, Module>,
-  NameSpace extends NameSpaceDeclare = keyof Modules
-> = (namespace: NameSpace) => CombineState<Modules, NameSpace>;
-
-export type CombineState<
-  Modules extends Record<string, Module>,
-  Namespace extends NameSpaceDeclare
-> = Namespace extends keyof Modules
-  ? Modules[Namespace]['state']
-  : { [key in Namespace]: Modules[key]['state'] };
+export type UseModule<Modules extends Record<string, Module>> = <
+  NameSpace extends NameSpaceDeclare<Modules>
+>(
+  namespace: NameSpace,
+) => NameSpace extends keyof Modules
+  ? { [key in NameSpace]: Modules[key]['state'] }
+  : { [key in NameSpace[number]]: Modules[key]['state'] };
 
 export type RootEffects<Modules> = {
   [key in keyof Modules]: Modules[key]['effects'] extends undefined
@@ -62,4 +58,9 @@ export type MixinModule<C, M> = {
   };
 };
 
-export declare const bootstrap: Bootstrap;
+export const mixin: <C extends Module, M extends Record<string, Module>>(
+  common: C,
+  modules: M,
+) => MixinModule<C, M>;
+
+export default bootstrap;
