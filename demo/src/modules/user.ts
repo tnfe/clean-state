@@ -1,14 +1,16 @@
+const state = {
+  name: 'test'
+}
+
 const user = {
-  state: {
-    name: 'test'
-  },
+  state,
   reducers: {
-    setName({payload, state}) {
+    setName({payload, state}: any) {
       return {...state, ...payload}
     }
   },
   effects: {
-    async getName({payload, dispatch}) {
+    async getName({payload, dispatch}: any) {
       const name = await Promise.resolve(payload.name)
       dispatch.user.setName({name})
     }

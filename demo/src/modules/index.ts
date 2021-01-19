@@ -1,6 +1,7 @@
 import user from './user'
-import bootstrap from '../../../src/index'
+import project from './project'
+import bootstrap from 'fox'
 
-const modules = { user }
+const modules = { user, project }
 
 export const {useModule, dispatch}  = bootstrap(modules);
