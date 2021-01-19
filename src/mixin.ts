@@ -1,4 +1,4 @@
-import { Module, MixinModule } from '../type.d';
+import { Module, MixinModule } from '../index.d';
 
 // 对模块混入公共属性和方法
 const mixin = <C extends Module, M extends Record<string, Module>>(

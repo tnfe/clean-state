@@ -1,26 +1,19 @@
-import { RootState, AnyObject, Dispatch } from '../type';
+export function splitPropertyAndMethod(modules) {
+  const rootState = {};
+  const rootReducers = {};
+  const rootEffects = {};
 
-// 按照命名空间展平 modules 获取初始状态
-export const getInitialState = <Modules>(
-  modules: Modules,
-): RootState<Modules> => {
-  const entries = Object.entries(modules);
-  const initialState = {};
-  entries.forEach(([key, module]) => {
-    const { state } = module;
-    initialState[key] = state; // 暂存 state
+  Object.keys(modules).forEach((key) => {
+    const module = modules[key];
+
+    rootState[key] = {};
+    rootReducers[key] = {};
+    rootEffects[key] = {};
+
+    Object.assign(rootState[key], module.state);
+    Object.assign(rootReducers[key], module.reducers);
+    Object.assign(rootEffects[key], module.effects);
   });
-  return initialState as RootState<Modules>;
-};
 
-// 提取 reducers 和 effects 方法
-export const extractFns = (namespace: string, next: Dispatch) => (
-  fns = {},
-): Record<string, any> =>
-  Object.keys(fns).reduce((result, fnKey) => {
-    const fn = (payload: AnyObject) => {
-      const type = `${namespace}.${fnKey}`;
-      return next(type, payload);
-    };
-    return { ...result, [fnKey]: fn };
-  }, {});
+  return { rootState, rootReducers, rootEffects };
+}

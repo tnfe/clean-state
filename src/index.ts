@@ -1,4 +1,4 @@
-import { createContainer } from './core';
+import bootstrap from './bootstrap';
+
 export { default as mixin } from './mixin';
-export { default as bootstrap } from './bootstrap';
-export default createContainer;
+export default bootstrap;
