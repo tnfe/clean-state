@@ -3,7 +3,7 @@
 <p align="left">
   <strong>
     <a href="README.md">English</a> |
-    <a href="docs/README-zh-cn.md">中文</a> |
+    <a href="../README-zh-cn.md">中文</a> |
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -19,25 +19,25 @@
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/dm/clean-state" alt="Downloads" /></a>
 </div>
 
-## Overview
-🐻 Clean-State is a neat, compact state management tool. It drops all of React's historical baggage, uses native hooks to implement it, and gets rid of Redux's problem of invalid rendering during status updates. At the architectural level it is automatically organized through a very simple API. 🍋 If you're not building an aircraft carrier and you're tired of having a large, complex and unwield-of-use State management library, try clean-state. It is small and exquisite, the performance of the extreme can meet your needs.
+## 概览
+🐻 clean-state是一款纯净小巧的状态管理神器。它放下了React所有的历史包袱，使用原生hooks来实现，并摆脱了Redux在状态更新时的无效渲染问题。在架构层面它会通过一个极其简单的api来自动组织。🍋如果你不是要制造一艘航空母舰又厌烦了复杂且难用的大型状态管理库，那么不妨来试试Clean-State。它小巧玲珑、性能极致完全可以满足你的需求。
 
-## Features
-1.  Using native hooks implementation, zero external dependencies.
-2.  The structure is simple, the module layer granularity is fine and measurable, and the division is clear.
-3.  Excellent performance, can do module level accurate update.
-4.  Native support side effects.
-5.  It's extremely small, just 200 lines of code.
-6.  Just React syntax, zero learning access cost.
-7.  TypeScript friendly and automatically deduces module types.
+## 特性
+1.  使用原生hooks实现，对外部零依赖。
+2.  架构简单，module 层粒度精细可测，划分清晰。
+3.  性能优异，可做到模块级别的精确更新。
+4.  原生支持副作用。
+5.  极其小巧，仅仅200行代码。
+6.  仅仅是react语法，零学习接入成本。
+7.  对Typescript支持友好，可以自动推导模块类型。
 
-## Installation
+## 安装
 ```javascript
 npm i clean-state --save
 ```
 
-## Usage
-#### 1.Define a module
+## 使用
+#### 1.定义一个模块
 ```javascript
 // modules/user.ts
 const state = {
@@ -61,8 +61,7 @@ const user = {
 
 export default user;
 ```
-
-#### 2.Registration module
+#### 2.注册模块
 ```javascript
 // modules/index.ts
 import user from './user'
@@ -71,8 +70,8 @@ import bootstrapfrom 'clean-state'
 const modules = { user }
 export const {useModule, dispatch}  = bootstrap(modules);
 ```
-
-#### 3.Use the module
+    
+#### 3.使用模块
 ```javascript
 // page.ts
 import {useCallback} from 'react'
@@ -96,9 +95,9 @@ function App() {
           name: {user.name}
         </div>
         <div>
-          modify: <input onChange={onChange}></input>
+          修改用户名: <input onChange={onChange}></input>
         </div>
-        <button onClick={onClick}>getUserName</button>
+        <button onClick={onClick}>获取用户名</button>
       </div>
     </div>
   );
@@ -109,7 +108,7 @@ export default App;
 
 ## 混入
 
-    In many cases, there are common states, reducers, or effects between multiple modules, and here we expose the methods to prevent users from making duplicate declarations in each module.
+    在很多情况下，多个模块之间会存在公共的state、reducers或者effects，这里我们为了防止用户在每个模块里做重复声明，对外暴露了混入的方法。
 
 ```javascript
 // common.ts
@@ -136,7 +135,7 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ## 注意
 
-    Dispatch calls take precedence at effects-> reducers, so when there are reducers and effects with the same name under a module, only effects are executed.
+    Dispatch调用优先级为 effects -> reducers，所以当一个模块下存在同名的reducer和effect时，只会执行effect。
 
 
 ## 许可
