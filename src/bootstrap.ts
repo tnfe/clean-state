@@ -42,32 +42,33 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
       const fns = {};
       Object.keys(reducers).forEach((fnKey) => {
         fns[fnKey] = (payload: Record<string, any>) =>
-          dispatch(`${key}/fnKey`, payload);
+          dispatch(`${key}/${fnKey}`, payload);
       });
+      Object.assign(dispatch[key], fns);
     });
   };
 
-  const useModule: any = function (namespace: string | string[]) {
+  function useModule(namespace: string | string[]): any {
     const [, setState] = useState({});
-    const combineState = container.getState(namespace);
 
     const setStateProxy = useCallback(() => setState({}), [setState]);
+
     useEffect(() => {
       container.addListener(namespace, setStateProxy);
-
       return () => container.removeListener(namespace, setStateProxy);
     }, [namespace, setStateProxy]);
 
-    return combineState;
-  };
+    return container.getState(namespace);
+  }
 
   // Inject each module's reducer and effect method into the Dispatch
   const rootReducers = container.getRootReducers();
   const rootEffects = container.getRootEffects();
+
   injectFns(rootReducers);
   injectFns(rootEffects);
 
-  return { useModule, dispatch };
+  return { useModule: useModule as any, dispatch };
 };
 
 export default bootstrap;

@@ -2,3 +2,4 @@ src
 demo
 docs
 node_modules
+.eslintcache

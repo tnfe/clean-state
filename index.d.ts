@@ -63,4 +63,5 @@ export const mixin: <C extends Module, M extends Record<string, Module>>(
   modules: M,
 ) => MixinModule<C, M>;
 
+const bootstrap: Bootstrap;
 export default bootstrap;

@@ -1,6 +1,6 @@
 {
   "name": "fox",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "",
   "main": "lib/index.js",
   "type": "index.d.ts",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tnfe/fox"
+    "url": "https://github.com/tnfe/clean-state"
   },
   "author": "freezeYe",
   "license": "MIT",
