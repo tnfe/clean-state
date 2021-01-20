@@ -1,4 +1,9 @@
-# Clean-State
+<p align="right">
+  <strong>
+    <a href="./README.md">English</a> |
+    <a href="./docs/README-zh-cn.md">中文</a>
+  </strong>
+</p>
 
 <p align="center">
   <img width="650px" src="https://github.com/freezeYe/assets/blob/master/cs.png" />
@@ -9,13 +14,6 @@
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/l/clean-state?style=flat-square" alt="Package License" /></a>
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/dm/clean-state" alt="Downloads" /></a>
 </div>
-
-<p align="left">
-  <strong>
-    <a href="./README.md">English</a> |
-    <a href="./docs/README-zh-cn.md">中文</a>
-  </strong>
-</p>
 
 ## Overview
 🐻 Clean-State is a neat, compact state management tool. It drops all of React's historical baggage, uses native hooks to implement it, and gets rid of Redux's problem of invalid rendering during status updates. At the architectural level it is automatically organized through a very simple API. 🍋 If you're not building an aircraft carrier and you're tired of having a large, complex and unwield-of-use State management library, try clean-state. It is small and exquisite, the performance of the extreme can meet your needs.

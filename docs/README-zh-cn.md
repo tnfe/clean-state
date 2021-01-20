@@ -1,4 +1,9 @@
-# Clean-State
+<p align="right">
+  <strong>
+    <a href="../README.md">English</a> |
+    <a href="./README-zh-cn.md">中文</a>
+  </strong>
+</p>
 
 <p align="center">
   <img width="650px" src="https://github.com/freezeYe/assets/blob/master/cs.png" />
@@ -9,13 +14,6 @@
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/l/clean-state?style=flat-square" alt="Package License" /></a>
 <a href="https://www.npmjs.com/clean-state" target="_blank"><img src="https://img.shields.io/npm/dm/clean-state" alt="Downloads" /></a>
 </div>
-
-<p align="left">
-  <strong>
-    <a href="../README.md">English</a> |
-    <a href="./README-zh-cn.md">中文</a>
-  </strong>
-</p>
 
 ## 概览
 🐻 clean-state是一款纯净小巧的状态管理神器。它放下了React所有的历史包袱，使用原生hooks来实现，并摆脱了Redux在状态更新时的无效渲染问题。在架构层面它会通过一个极其简单的api来自动组织。🍋如果你不是要制造一艘航空母舰又厌烦了复杂且难用的大型状态管理库，那么不妨来试试Clean-State。它小巧玲珑、性能极致完全可以满足你的需求。
