@@ -5,8 +5,6 @@
     <a href="README.md">English</a> |
     <a href="docs/README-zh-cn.md">中文</a> |
   </strong>
-  <br/>
-  <sup><em>(Please contribute translations!)</em></sup>
 </p>
 
 <p align="center">
@@ -107,7 +105,7 @@ function App() {
 export default App;
 ```
 
-## 混入
+## Mixin
 
     In many cases, there are common states, reducers, or effects between multiple modules, and here we expose the methods to prevent users from making duplicate declarations in each module.
 
@@ -134,10 +132,13 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ```
 
-## 注意
+## Notice
 
     Dispatch calls take precedence at effects-> reducers, so when there are reducers and effects with the same name under a module, only effects are executed.
 
+## Issues
 
-## 许可
+    If you have better suggestions for this library, or have any problems using it, you can write them here: [https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
+
+## License
 [MIT](./LICENSE)

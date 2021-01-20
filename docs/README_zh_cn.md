@@ -3,10 +3,8 @@
 <p align="left">
   <strong>
     <a href="README.md">English</a> |
-    <a href="../README-zh-cn.md">中文</a> |
+    <a href="../README-zh-cn.md">中文</a>
   </strong>
-  <br/>
-  <sup><em>(Please contribute translations!)</em></sup>
 </p>
 
 <p align="center">
@@ -137,6 +135,10 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
     Dispatch调用优先级为 effects -> reducers，所以当一个模块下存在同名的reducer和effect时，只会执行effect。
 
+## 问题
+
+    如果您对本库有更好的建议，或者遇到了任何使用上的问题，可以在这里记录:
+    [https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
 
 ## 许可
 [MIT](./LICENSE)
