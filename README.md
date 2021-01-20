@@ -3,7 +3,7 @@
 <p align="left">
   <strong>
     <a href="README.md">English</a> |
-    <a href="docs/README-zh-cn.md">中文</a> |
+    <a href="./docs/README-zh-cn.md">中文</a>
   </strong>
 </p>
 
@@ -107,7 +107,7 @@ export default App;
 
 ## Mixin
 
-    In many cases, there are common states, reducers, or effects between multiple modules, and here we expose the methods to prevent users from making duplicate declarations in each module.
+In many cases, there are common states, reducers, or effects between multiple modules, and here we expose the methods to prevent users from making duplicate declarations in each module.
 
 ```javascript
 // common.ts
@@ -134,11 +134,11 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ## Notice
 
-    Dispatch calls take precedence at effects-> reducers, so when there are reducers and effects with the same name under a module, only effects are executed.
+Dispatch calls take precedence at effects-> reducers, so when there are reducers and effects with the same name under a module, only effects are executed.
 
 ## Issues
 
-    If you have better suggestions for this library, or have any problems using it, you can write them here: [https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
+If you have better suggestions for this library, or have any problems using it, you can write them here: [https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
 
 ## License
 [MIT](./LICENSE)

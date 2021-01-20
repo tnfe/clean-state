@@ -2,8 +2,8 @@
 
 <p align="left">
   <strong>
-    <a href="README.md">English</a> |
-    <a href="../README-zh-cn.md">中文</a>
+    <a href="../README.md">English</a> |
+    <a href="./README-zh-cn.md">中文</a>
   </strong>
 </p>
 
@@ -106,7 +106,7 @@ export default App;
 
 ## 混入
 
-    在很多情况下，多个模块之间会存在公共的state、reducers或者effects，这里我们为了防止用户在每个模块里做重复声明，对外暴露了混入的方法。
+在很多情况下，多个模块之间会存在公共的state、reducers或者effects，这里我们为了防止用户在每个模块里做重复声明，对外暴露了混入的方法。
 
 ```javascript
 // common.ts
@@ -133,12 +133,12 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ## 注意
 
-    Dispatch调用优先级为 effects -> reducers，所以当一个模块下存在同名的reducer和effect时，只会执行effect。
+Dispatch调用优先级为 effects -> reducers，所以当一个模块下存在同名的reducer和effect时，只会执行effect。
 
 ## 问题
 
-    如果您对本库有更好的建议，或者遇到了任何使用上的问题，可以在这里记录:
-    [https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
+如果您对本库有更好的建议，或者遇到了任何使用上的问题，可以在这里记录:
+[https://github.com/tnfe/clean-state/issues](https://github.com/tnfe/clean-state/issues) 
 
 ## 许可
 [MIT](./LICENSE)
