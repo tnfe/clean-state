@@ -10,8 +10,8 @@ const user = {
     }
   },
   effects: {
-    async getName({payload, dispatch}: any) {
-      const name = await Promise.resolve(payload.name)
+    async fetchNameAndSet({dispatch}: any) {
+      const name = await Promise.resolve('fetch_name')
       dispatch.user.setName({name})
     }
   }

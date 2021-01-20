@@ -1,12 +1,14 @@
 const state = {
-  project: '百花'
+  count: 0
 }
 
 const user = {
   state,
   reducers: {
-    setProject({payload, state}: any) {
-      return {...state, ...payload}
+    increaseCount({payload, state}: any) {
+      const {count} = state
+      const {num} = payload
+      return {...state, count: count + num}
     }
   },
 }

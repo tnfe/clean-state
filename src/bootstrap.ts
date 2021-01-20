@@ -11,6 +11,7 @@ import { Bootstrap } from '../index.d';
 const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
   const container = new Container(modules);
 
+  // The only module method call that is exposed to the outside world
   const dispatch: any = (
     nameAndMethod: string,
     payload: Record<string, any>,
@@ -29,7 +30,6 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
         state,
         rootState,
         payload,
-        dispatch,
       });
       container.setState(namespace, newState);
     }
@@ -38,9 +38,9 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
   const injectFns = (reducersOrEffects) => {
     Object.keys(reducersOrEffects).forEach((key) => {
       if (!dispatch[key]) dispatch[key] = {};
-      const reducers = rootReducers[key];
+      const originFns = reducersOrEffects[key];
       const fns = {};
-      Object.keys(reducers).forEach((fnKey) => {
+      Object.keys(originFns).forEach((fnKey) => {
         fns[fnKey] = (payload: Record<string, any>) =>
           dispatch(`${key}/${fnKey}`, payload);
       });
@@ -48,6 +48,8 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
     });
   };
 
+  // This hook function exports the module state required by the user
+  // and does the dependent binding of data to the view
   function useModule(namespace: string | string[]): any {
     const [, setState] = useState({});
 
