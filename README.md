@@ -131,6 +131,61 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ```
 
+## Module
+### `state`
+Module state, which is a property object.
+```
+{
+    name: 'zhangsan',
+    order: 1
+}
+```
+### `reducers`
+A collection of handlers that change the state of a module, returning the latest state.
+```
+{
+    setValue({payload, state, rootState}) {
+        return {...payload, ...state}
+    }
+}
+```
+
+### `effects`
+Module's collection of side effects methods that handle asynchronous calls.
+```
+{
+    async fetchAndSetValue({payload, state, rootState, dispatch}) {
+        const newOrder = await fetch('xxx')
+        dispatch.user.setValue({order: newOrder})
+    }
+}
+```
+
+## API
+
+### `bootstrap(modules)`
+| Property | Description | Type |
+| :----: | :----: | :----: |
+| modules | A collection of registered modules | {string, Module} |
+
+### `useModule(moduleName)`
+| Property | Description | Type |
+| :----: | :----: | :----: |
+| moduleName | The name of the module used returns the corresponding status | string / string[] |
+
+### `dispatch.{moduleName}.{fnName}(payload)`
+| Property | Description | Type |
+| :----: | :----: | :----: |
+| moduleName | The specific module name of the call should be registered in Bootstrap | string |
+| fnName | The method name of the call module, reducer/effect | string |
+| payload | The load value passed | object |
+
+### `mixin(common, modules)`
+| Property | Description | Type |
+| :----: | :----: | :----: |
+| common | Public modules that need to be injected | Module |
+| modules | A collection of registered modules | Module |
+
 ## Notice
 
 Dispatch calls take precedence at effects-> reducers, so when there are reducers and effects with the same name under a module, only effects are executed.

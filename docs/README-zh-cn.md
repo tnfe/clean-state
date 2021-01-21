@@ -130,6 +130,61 @@ export const {useModule, dispatch}  = bootstrap(modules);
 
 ```
 
+## 模块
+### `state`
+模块状态，是一个属性对象。
+```
+{
+    name: 'zhangsan',
+    order: 1
+}
+```
+### `reducers`
+更改模块状态的处理函数集合，会返回最新的state。
+```
+{
+    setValue({payload, state, rootState}) {
+        return {...payload, ...state}
+    }
+}
+```
+
+### `effects`
+模块的副作用方法集合，主要处理异步调用
+```
+{
+    async fetchAndSetValue({payload, state, rootState, dispatch}) {
+        const newOrder = await fetch('xxx')
+        dispatch.user.setValue({order: newOrder})
+    }
+}
+```
+
+## 接口
+
+### `bootstrap(modules)`
+| 参数 | 说明 | 类型 |
+| :----: | :----: | :----: |
+| modules | 注册的模块集合 | {string, Module} |
+
+### `useModule(moduleName)`
+| 参数 | 说明 | 类型 |
+| :----: | :----: | :----: |
+| moduleName | 使用的模块名，返回对应状态 | string / string[] |
+
+### `dispatch.{moduleName}.{fnName}(payload)`
+| 参数 | 说明 | 类型 |
+| :----: | :----: | :----: |
+| moduleName | 调用的具体模块名，需在bootstrap中注册 | string |
+| fnName | 调用模块的方法名，reducer/effect | string |
+| payload | 传递的负载值 | object |
+
+### `mixin(common, modules)`
+| 参数 | 说明 | 类型 |
+| :----: | :----: | :----: |
+| common | 需要注入的公共模块 | Module |
+| modules | 注册的模块集合 | Module |
+
 ## 注意
 
 Dispatch调用优先级为 effects -> reducers，所以当一个模块下存在同名的reducer和effect时，只会执行effect。
