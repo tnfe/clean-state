@@ -173,6 +173,12 @@ Module's collection of side effects methods that handle asynchronous calls.
 | :----: | :----: | :----: |
 | moduleName | The name of the module used returns the corresponding status | string / string[] |
 
+### `mixin(common, modules)`
+| Property | Description | Type |
+| :----: | :----: | :----: |
+| common | Public modules that need to be injected | Module |
+| modules | A collection of registered modules | Module |
+
 ### `dispatch.{moduleName}.{fnName}(payload)`
 | Property | Description | Type |
 | :----: | :----: | :----: |
@@ -180,11 +186,6 @@ Module's collection of side effects methods that handle asynchronous calls.
 | fnName | The method name of the call module, reducer/effect | string |
 | payload | The load value passed | object |
 
-### `mixin(common, modules)`
-| Property | Description | Type |
-| :----: | :----: | :----: |
-| common | Public modules that need to be injected | Module |
-| modules | A collection of registered modules | Module |
 
 ## Notice
 

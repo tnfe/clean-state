@@ -150,7 +150,7 @@ export const {useModule, dispatch}  = bootstrap(modules);
 ```
 
 ### `effects`
-模块的副作用方法集合，主要处理异步调用
+模块的副作用方法集合，主要处理异步调用。
 ```
 {
     async fetchAndSetValue({payload, state, rootState, dispatch}) {
@@ -172,6 +172,12 @@ export const {useModule, dispatch}  = bootstrap(modules);
 | :----: | :----: | :----: |
 | moduleName | 使用的模块名，返回对应状态 | string / string[] |
 
+### `mixin(common, modules)`
+| 参数 | 说明 | 类型 |
+| :----: | :----: | :----: |
+| common | 需要注入的公共模块 | Module |
+| modules | 注册的模块集合 | Module |
+
 ### `dispatch.{moduleName}.{fnName}(payload)`
 | 参数 | 说明 | 类型 |
 | :----: | :----: | :----: |
@@ -179,11 +185,6 @@ export const {useModule, dispatch}  = bootstrap(modules);
 | fnName | 调用模块的方法名，reducer/effect | string |
 | payload | 传递的负载值 | object |
 
-### `mixin(common, modules)`
-| 参数 | 说明 | 类型 |
-| :----: | :----: | :----: |
-| common | 需要注入的公共模块 | Module |
-| modules | 注册的模块集合 | Module |
 
 ## 注意
 
