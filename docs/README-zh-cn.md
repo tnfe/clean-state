@@ -26,6 +26,7 @@
 5.  极其小巧，仅仅200行代码。
 6.  仅仅是react语法，零学习接入成本。
 7.  对Typescript支持友好，可以自动推导模块类型。
+8.  完美支持RN开发。
 
 ## 安装
 ```javascript
@@ -74,6 +75,10 @@ import {useCallback} from 'react'
 import { useModule, dispatch } from './modules'
 
 function App() {
+  /** 
+   * 这里你也能够传入数组同时返回多个模块状态
+   * const {user, project} = useModule(['user', 'project'])
+   */
   const { user } = useModule('user')
   const onChange = useCallback((e)=> {
     const { target } = e

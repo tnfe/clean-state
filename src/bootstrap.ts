@@ -1,6 +1,10 @@
 import { useEffect, useCallback, useState } from 'react';
+import EventEmitter from 'eventemitter3';
 import Container from './container';
-import { Bootstrap } from '../index.d';
+import { Bootstrap, Plugin } from '../index.d';
+
+const DISPATCH_TYPE = 'CS_DISPATCH_TYPE';
+const plugins: Plugin[] = [];
 
 /**
  * This is FOX's entry method, connecting each individual module into a whole.
@@ -10,6 +14,7 @@ import { Bootstrap } from '../index.d';
  */
 const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
   const container = new Container(modules);
+  const pluginEmitter = new EventEmitter();
 
   // The only module method call that is exposed to the outside world
   const dispatch: any = (
@@ -24,6 +29,10 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
 
     // The side effects take precedence over the reducer execution
     if (effects[methodName]) {
+      pluginEmitter.emit(DISPATCH_TYPE, {
+        type: nameAndMethod,
+        payload,
+      });
       return effects[methodName]({ state, payload, rootState, dispatch });
     } else if (reducers[methodName]) {
       const newState = reducers[methodName]({
@@ -32,6 +41,13 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
         payload,
       });
       container.setState(namespace, newState);
+
+      // Sync state to plugin
+      pluginEmitter.emit(DISPATCH_TYPE, {
+        type: nameAndMethod,
+        payload,
+        newState,
+      });
     }
   };
 
@@ -70,7 +86,13 @@ const bootstrap: Bootstrap = <Modules>(modules: Modules) => {
   injectFns(rootReducers);
   injectFns(rootEffects);
 
+  plugins.forEach((plugin) => plugin(modules, pluginEmitter));
   return { useModule: useModule as any, dispatch };
 };
+
+bootstrap.addPlugin = (plugin) => {
+  plugins.push(plugin);
+};
+bootstrap.DISPATCH_TYPE = DISPATCH_TYPE;
 
 export default bootstrap;

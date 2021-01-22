@@ -4,12 +4,14 @@ export interface Module {
   effects?: Record<string, any>;
 }
 
-export type Bootstrap = <Modules>(
-  modules: Modules,
-) => {
-  useModule: UseModule<Modules>;
-  dispatch: InnerDispatch<Modules>;
-};
+export interface Bootstrap {
+  <Modules>(modules: Modules): {
+    useModule: UseModule<Modules>;
+    dispatch: InnerDispatch<Modules>;
+  };
+  DISPATCH_TYPE: symbol;
+  addPlugin: (plugin: any) => void;
+}
 
 export type NameSpaceDeclare<Modules> = keyof Modules | (keyof Modules)[];
 
@@ -57,6 +59,8 @@ export type MixinModule<C, M> = {
     effects: M[key]['effects'] & C['effects'];
   };
 };
+
+export type Plugin = (modules: any, on: any) => void;
 
 export const mixin: <C extends Module, M extends Record<string, Module>>(
   common: C,

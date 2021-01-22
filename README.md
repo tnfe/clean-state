@@ -26,6 +26,7 @@
 5.  It's extremely small, just 200 lines of code.
 6.  Just React syntax, zero learning access cost.
 7.  TypeScript friendly and automatically deduces module types.
+8.  Perfect support for RN.
 
 ## Installation
 ```javascript
@@ -75,6 +76,10 @@ import {useCallback} from 'react'
 import { useModule, dispatch } from './modules'
 
 function App() {
+  /** 
+   * Here you can also pass in an array and return multiple module states at the same time 
+   * const {user, project} = useModule(['user', 'project'])
+   */
   const { user } = useModule('user')
   const onChange = useCallback((e)=> {
     const { target } = e

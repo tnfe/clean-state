@@ -1,7 +1,7 @@
-import {useCallback} from 'react'
+import {useCallback, memo} from 'react'
 import {useModule, dispatch} from '../modules'
 
-const Project = ()=> {
+const Project = memo(()=> {
 
   const {project} = useModule('project')
   const increace = useCallback(()=> {
@@ -13,6 +13,6 @@ const Project = ()=> {
     project count: {project.count}
     <button onClick={increace}>+</button>
   </div>
-}
+})
 
 export default Project
