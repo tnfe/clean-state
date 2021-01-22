@@ -1,4 +1,3 @@
-import produce from 'immer';
 import EventEmitter from 'eventemitter3';
 import { splitPropertyAndMethod } from './helper';
 
@@ -69,12 +68,7 @@ class Container {
 
   public setState(namespace: string, newState: Record<string, any>): void {
     if (this.rootState[namespace]) {
-      this.rootState[namespace] = produce(
-        this.rootState[namespace],
-        (draftState) => {
-          Object.assign(draftState, newState);
-        },
-      );
+      this.rootState[namespace] = newState;
     }
 
     this.trigger(namespace);
