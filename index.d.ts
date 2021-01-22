@@ -9,7 +9,7 @@ export interface Bootstrap {
     useModule: UseModule<Modules>;
     dispatch: InnerDispatch<Modules>;
   };
-  DISPATCH_TYPE: symbol;
+  DISPATCH_TYPE: string;
   addPlugin: (plugin: any) => void;
 }
 
