@@ -63,7 +63,7 @@ export default user;
 ```javascript
 // modules/index.ts
 import user from './user'
-import bootstrapfrom 'clean-state'
+import bootstrap from 'clean-state'
 
 const modules = { user }
 export const {useModule, dispatch}  = bootstrap(modules);
