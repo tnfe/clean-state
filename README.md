@@ -26,7 +26,8 @@
 5.  It's extremely small, just 200 lines of code.
 6.  Just React syntax, zero learning access cost.
 7.  TypeScript friendly and automatically deduces module types.
-8.  Perfect support for RN.
+8.  Support for Redux - Tool debugging tool.
+9.  Perfect support for RN.
 
 ## Installation
 ```javascript
