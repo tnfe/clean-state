@@ -192,6 +192,11 @@ Module's collection of side effects methods that handle asynchronous calls.
 | fnName | The method name of the call module, reducer/effect | string |
 | payload | The load value passed | object |
 
+## Debugging
+You can use [cs-redux-devtool](https://github.com/freezeYe/cs-redux-devtool) to debug your project and track historical data changes.
+<p align="center">
+  <img width="400px" src="https://github.com/freezeYe/assets/blob/master/redux_devtool.png" />
+</p>
 
 ## Notice
 

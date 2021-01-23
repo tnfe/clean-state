@@ -191,6 +191,12 @@ export const {useModule, dispatch}  = bootstrap(modules);
 | fnName | 调用模块的方法名，reducer/effect | string |
 | payload | 传递的负载值 | object |
 
+## 调试
+你可以使用 [cs-redux-devtool](https://github.com/freezeYe/cs-redux-devtool) 来调试你的项目，追踪历史数据变化。
+<p align="center">
+  <img width="400px" src="https://github.com/freezeYe/assets/blob/master/redux_devtool.png" />
+</p>
+
 
 ## 注意
 
