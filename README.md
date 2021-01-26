@@ -26,7 +26,8 @@
 5.  It's extremely small, just 200 lines of code.
 6.  Just React syntax, zero learning access cost.
 7.  TypeScript friendly and automatically deduces module types.
-8.  Perfect support for RN.
+8.  Support for Redux - Tool debugging tool.
+9.  Perfect support for RN.
 
 ## Installation
 ```javascript
@@ -63,7 +64,7 @@ export default user;
 ```javascript
 // modules/index.ts
 import user from './user'
-import bootstrapfrom 'clean-state'
+import bootstrap from 'clean-state'
 
 const modules = { user }
 export const {useModule, dispatch}  = bootstrap(modules);
@@ -191,6 +192,11 @@ Module's collection of side effects methods that handle asynchronous calls.
 | fnName | The method name of the call module, reducer/effect | string |
 | payload | The load value passed | object |
 
+## Debugging
+You can use [cs-redux-devtool](https://github.com/freezeYe/cs-redux-devtool) to debug your project and track historical data changes.
+<p align="center">
+  <img width="400px" src="https://github.com/freezeYe/assets/blob/master/redux_devtool.png" />
+</p>
 
 ## Notice
 

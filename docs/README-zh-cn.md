@@ -26,7 +26,8 @@
 5.  极其小巧，仅仅200行代码。
 6.  仅仅是react语法，零学习接入成本。
 7.  对Typescript支持友好，可以自动推导模块类型。
-8.  完美支持RN开发。
+8.  支持redux-tool调试工具。
+9.  完美支持RN开发。
 
 ## 安装
 ```javascript
@@ -62,7 +63,7 @@ export default user;
 ```javascript
 // modules/index.ts
 import user from './user'
-import bootstrapfrom 'clean-state'
+import bootstrap from 'clean-state'
 
 const modules = { user }
 export const {useModule, dispatch}  = bootstrap(modules);
@@ -189,6 +190,12 @@ export const {useModule, dispatch}  = bootstrap(modules);
 | moduleName | 调用的具体模块名，需在bootstrap中注册 | string |
 | fnName | 调用模块的方法名，reducer/effect | string |
 | payload | 传递的负载值 | object |
+
+## 调试
+你可以使用 [cs-redux-devtool](https://github.com/freezeYe/cs-redux-devtool) 来调试你的项目，追踪历史数据变化。
+<p align="center">
+  <img width="400px" src="https://github.com/freezeYe/assets/blob/master/redux_devtool.png" />
+</p>
 
 
 ## 注意
