@@ -60,6 +60,19 @@ export type MixinModule<C, M> = {
   };
 };
 
+export type EffectProps<T, S = any, R = Record<string, any>> = {
+  payload: T;
+  state: S;
+  rootState: R;
+  dispatch?: any;
+};
+
+export type ReduerProps<T, S = any, R = Record<string, any>> = {
+  payload: T;
+  state: S;
+  rootState: R;
+};
+
 export type Plugin = (modules: any, on: any) => void;
 
 export const mixin: <C extends Module, M extends Record<string, Module>>(
