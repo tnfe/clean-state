@@ -1,6 +1,6 @@
 {
   "name": "clean-state",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "",
   "main": "lib/index.min.js",
   "type": "index.d.ts",
