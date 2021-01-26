@@ -67,7 +67,7 @@ export type EffectProps<T, S = any, R = Record<string, any>> = {
   dispatch?: any;
 };
 
-export type ReduerProps<T, S = any, R = Record<string, any>> = {
+export type ReducerProps<T, S = any, R = Record<string, any>> = {
   payload: T;
   state: S;
   rootState: R;
