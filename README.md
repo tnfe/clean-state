@@ -151,7 +151,7 @@ A collection of handlers that change the state of a module, returning the latest
 ```
 {
     setValue({payload, state, rootState}) {
-        return {...payload, ...state}
+        return {...state, ...payload}
     }
 }
 ```
