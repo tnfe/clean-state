@@ -3,7 +3,7 @@
   "version": "2.2.4",
   "description": "",
   "main": "lib/index.min.js",
-  "type": "index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "dev": "tsc --watch",
