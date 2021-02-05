@@ -150,7 +150,7 @@ export const {useModule, dispatch}  = bootstrap(modules);
 ```
 {
     setValue({payload, state, rootState}) {
-        return {...payload, ...state}
+        return {...state, ...payload}
     }
 }
 ```
