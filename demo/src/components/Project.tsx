@@ -4,14 +4,14 @@ import {useModule, dispatch} from '../modules'
 const Project = memo(()=> {
 
   const {project} = useModule('project')
-  const increace = useCallback(()=> {
+  const increase = useCallback(()=> {
     dispatch.project.increaseCount({num: 1})
   }, [])
 
   console.log('project update')
   return <div>
     project count: {project.count}
-    <button onClick={increace}>+</button>
+    <button onClick={increase}>+</button>
   </div>
 })
 
