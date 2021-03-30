@@ -7,7 +7,7 @@ const DISPATCH_TYPE = 'CS_DISPATCH_TYPE';
 const plugins: Plugin[] = [];
 
 /**
- * This is FOX's entry method, connecting each individual module into a whole.
+ * This is CS's entry method, connecting each individual module into a whole.
  * It exposes the user to which useModule hooks are used to register the module's state,
  * and to which dispatches are used to invoke the module's methods and side effects
  * @param {object} modules
